@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relazione di Laboratorio: Il Condensatore Piano</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    /* Stile per rendere evidente che le celle sono modificabili */
+    .editable-cell {
+      transition: all 0.2s ease;
+      cursor: text;
+    }
+    .editable-cell:hover {
+      background-color: #d1fae5; /* Verde chiaro su hover */
+      border-radius: 0.375rem;
+    }
+    .editable-cell:focus {
+      outline: none;
+      background-color: #ecfdf5;
+      box-shadow: 0 0 0 2px #10b981;
+      border-radius: 0.375rem;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-emerald-200 selection:text-emerald-900">
+
+<header class="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <div class="bg-gradient-to-br from-emerald-500 to-emerald-700 text-white p-2.5 rounded-xl shadow-lg shadow-emerald-200/50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+        </svg>
+      </div>
+      <span class="text-xl font-bold tracking-tight text-slate-900">Esperimento di fisica <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">4DS 2026</span></span>
+    </div>
+    <span class="text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full shadow-sm">Scheda Interattiva</span>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 py-10 w-full flex-grow space-y-10">
+
+  <section class="bg-white rounded-3xl border border-slate-100 p-8 shadow-lg shadow-slate-200/50 relative overflow-hidden">
+    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-gradient-to-br from-emerald-100 to-teal-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+
+    <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700 tracking-tight mb-2">LABORATORIO</h1>
+    <p class="text-sm md:text-base font-semibold text-emerald-600 mb-8 uppercase tracking-widest flex items-center">
+      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+      Partecipanti: D'Angelo, De Fraia, Ampomah, De Rosa, Pisano, Del Deo, Maddaluno
+    </p>
+
+    <div class="prose prose-slate max-w-none space-y-4 text-base leading-relaxed relative z-10">
+      <p class="flex items-start bg-slate-50 p-3 rounded-xl">
+        <span class="font-bold text-emerald-600 mr-3 mt-0.5">&rarr;</span>
+        <span><strong>Condensatore piano:</strong> costituito da 2 lastre conduttrici poste a una certa distanza.</span>
+      </p>
+      <p class="flex items-start bg-slate-50 p-3 rounded-xl">
+        <span class="font-bold text-emerald-600 mr-3 mt-0.5">&rarr;</span>
+        <span>Possiamo aumentare la capacità inserendo un <strong>dielettrico</strong> (isolante) tra le 2 lastre conduttrici.</span>
+      </p>
+    </div>
+
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+      <div class="text-xl font-mono p-5 bg-white rounded-2xl shadow-md border border-slate-100 flex justify-center hover:scale-[1.02] transition-transform">
+        \[C = \varepsilon_0 \cdot \varepsilon_r \cdot \frac{S}{d}\]
+      </div>
+      <div class="text-xl font-mono p-5 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-2xl shadow-md shadow-emerald-200 flex justify-center hover:scale-[1.02] transition-transform">
+        \[\varepsilon_r > 1\]
+      </div>
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+    <div class="bg-white rounded-3xl border border-slate-100 p-6 lg:p-8 shadow-lg shadow-slate-200/50 lg:col-span-2 flex flex-col justify-between">
+      <div>
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+          <h2 class="text-xl font-bold text-slate-900 flex items-center">
+            <svg class="w-6 h-6 mr-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5l5 5v11a2 2 0 01-2 2z"></path></svg>
+            Tabella dei Dati Sperimentali
+          </h2>
+          <span class="text-xs font-medium text-emerald-600 bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-100 animate-pulse mt-2 sm:mt-0">
+            ⚡ I grafici si aggiornano digitando!
+          </span>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+          <table class="min-w-full divide-y divide-slate-200 text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700 font-bold uppercase tracking-wider text-xs">
+            <tr>
+              <th class="px-5 py-4">Configurazione</th>
+              <th class="px-5 py-4 text-center">1 pag</th>
+              <th class="px-5 py-4 text-center">2 pag</th>
+              <th class="px-5 py-4 text-center">3 pag</th>
+              <th class="px-5 py-4 text-center">4 pag</th>
+              <th class="px-5 py-4 text-right text-slate-400">U.M.</th>
+            </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
+            <tr class="hover:bg-slate-50/50 transition">
+              <td class="px-5 py-4 font-bold text-slate-900">Cap 1 (20 cm)</td>
+              <td id="cell-cap1-1" class="px-5 py-4 text-center bg-emerald-50/50 font-semibold editable-cell" contenteditable="true">9,79</td>
+              <td id="cell-cap1-2" class="px-5 py-4 text-center editable-cell" contenteditable="true">4,503</td>
+              <td id="cell-cap1-3" class="px-5 py-4 text-center editable-cell" contenteditable="true">3,670</td>
+              <td id="cell-cap1-4" class="px-5 py-4 text-center editable-cell" contenteditable="true">2,345</td>
+              <td class="px-5 py-4 text-right text-slate-400 font-mono text-xs">mF</td>
+            </tr>
+            <tr class="hover:bg-slate-50/50 transition">
+              <td class="px-5 py-4 font-bold text-slate-900">Cap 2 (19 cm)</td>
+              <td id="cell-cap2-1" class="px-5 py-4 text-center editable-cell" contenteditable="true">5,23</td>
+              <td id="cell-cap2-2" class="px-5 py-4 text-center editable-cell" contenteditable="true">3,294</td>
+              <td class="px-5 py-4 text-center text-slate-300">-</td>
+              <td class="px-5 py-4 text-center text-slate-300">-</td>
+              <td class="px-5 py-4 text-right text-slate-400 font-mono text-xs">mF</td>
+            </tr>
+            <tr class="hover:bg-slate-50/50 transition">
+              <td class="px-5 py-4 font-bold text-slate-900">Cap 3 (18 cm)</td>
+              <td id="cell-cap3-1" class="px-5 py-4 text-center editable-cell" contenteditable="true">4,34</td>
+              <td class="px-5 py-4 text-center text-slate-300">-</td>
+              <td id="cell-cap3-3" class="px-5 py-4 text-center editable-cell" contenteditable="true">5</td>
+              <td class="px-5 py-4 text-center text-slate-300">-</td>
+              <td class="px-5 py-4 text-right text-slate-400 font-mono text-xs">mF</td>
+            </tr>
+            <tr class="hover:bg-slate-50/50 transition">
+              <td class="px-5 py-4 font-bold text-slate-900">Cap 4 (17 cm)</td>
+              <td id="cell-cap4-1" class="px-5 py-4 text-center editable-cell" contenteditable="true">2,27</td>
+              <td class="px-5 py-4 text-center text-slate-300">-</td>
+              <td class="px-5 py-4 text-center text-slate-300">-</td>
+              <td id="cell-cap4-4" class="px-5 py-4 text-center editable-cell" contenteditable="true">4</td>
+              <td class="px-5 py-4 text-right text-slate-400 font-mono text-xs">mF</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-3xl border border-slate-100 p-6 lg:p-8 shadow-lg shadow-slate-200/50 flex flex-col justify-between">
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+          <svg class="w-6 h-6 mr-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+          Dimensioni Piastre (S)
+        </h2>
+        <ul class="space-y-4">
+          <li class="flex items-center space-x-4 p-3 hover:bg-slate-50 rounded-xl border border-transparent hover:border-slate-100 transition-all">
+            <span class="w-4 h-4 rounded-full bg-emerald-500 border-4 border-emerald-100 block shrink-0 shadow-sm"></span>
+            <span class="font-mono text-base font-semibold text-slate-700">20 &middot; 1,5 cm</span>
+          </li>
+          <li class="flex items-center space-x-4 p-3 hover:bg-slate-50 rounded-xl border border-transparent hover:border-slate-100 transition-all">
+            <span class="w-4 h-4 rounded-full bg-emerald-500 border-4 border-emerald-100 block shrink-0 shadow-sm"></span>
+            <span class="font-mono text-base font-semibold text-slate-700">19 &middot; 1,5 cm</span>
+          </li>
+          <li class="flex items-center space-x-4 p-3 hover:bg-slate-50 rounded-xl border border-transparent hover:border-slate-100 transition-all">
+            <span class="w-4 h-4 rounded-full bg-emerald-500 border-4 border-emerald-100 block shrink-0 shadow-sm"></span>
+            <span class="font-mono text-base font-semibold text-slate-700">18 &middot; 1,5 cm</span>
+          </li>
+          <li class="flex items-center space-x-4 p-3 hover:bg-slate-50 rounded-xl border border-transparent hover:border-slate-100 transition-all">
+            <span class="w-4 h-4 rounded-full bg-emerald-500 border-4 border-emerald-100 block shrink-0 shadow-sm"></span>
+            <span class="font-mono text-base font-semibold text-slate-700">17 &middot; 1,5 cm</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+    <div class="bg-white rounded-3xl border border-slate-100 p-6 lg:p-8 shadow-lg shadow-slate-200/50 group">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">Capacità in Funzione della Distanza</h3>
+        <p class="text-sm text-slate-500 mt-1">1° Grafico — Riproduzione fedele della curva iperbolica</p>
+      </div>
+      <div class="relative w-full h-[320px]">
+        <canvas id="canvasDistanza"></canvas>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-3xl border border-slate-100 p-6 lg:p-8 shadow-lg shadow-slate-200/50 group">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">Capacità in Funzione della Superficie</h3>
+        <p class="text-sm text-slate-500 mt-1">2° Grafico — Riproduzione della linea basata sulle dimensioni</p>
+      </div>
+      <div class="relative w-full h-[320px]">
+        <canvas id="canvasSuperficie"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-700 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+    <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 relative z-10">
+      <div class="bg-amber-500/20 text-amber-400 p-4 rounded-2xl border border-amber-500/30 shrink-0 shadow-[0_0_15px_rgba(251,191,36,0.2)]">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-white mb-2">Conclusione dell'Esperimento</h2>
+        <p class="text-slate-300 font-medium text-lg leading-relaxed">
+          Ogni qual volta aumentiamo la distanza (<span class="text-amber-400 font-bold bg-amber-400/10 px-2 py-0.5 rounded">&rarr; N° Pagine</span>), la capacità del condensatore diminuisce in modo inversamente proporzionale.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bg-slate-50 border-t border-slate-200 py-8 mt-10 text-center text-sm font-medium text-slate-400">
+  <p>&copy; 2026 Esperimento di Fisica - Classe 4DS. Tutti i diritti riservati.</p>
+</footer>
+
+<script>
+  const opzioniComuni = (titoloX, titoloY, maxY, stepSizeY) => ({
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { backgroundColor: '#0f172a', padding: 14, titleFont: {size: 14}, bodyFont: {size: 13}, cornerRadius: 10 }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: '#64748b', font: { size: 12 } },
+        title: { display: true, text: titoloX, color: '#334155', font: { weight: 'bold', size: 13 } }
+      },
+      y: {
+        grid: { color: '#e2e8f0', borderDash: [5, 5] },
+        ticks: {
+          color: '#64748b',
+          stepSize: stepSizeY,
+          font: { size: 12 }
+        },
+        title: { display: true, text: titoloY, color: '#334155', font: { weight: 'bold', size: 13 } },
+        max: maxY,
+        min: 0
+      }
+    }
+  });
+
+  // --- INIZIALIZZAZIONE GRAFICO 1: Capacità vs Distanza ---
+  const ctxDist = document.getElementById('canvasDistanza').getContext('2d');
+  const chartDistanza = new Chart(ctxDist, {
+    type: 'line',
+    data: {
+      labels: ['1 pag', '2 pag', '3 pag', '4 pag'],
+      datasets: [{
+        data: [9.79, 4.503, 3.670, 2.345],
+        borderColor: '#e11d48',
+        backgroundColor: 'rgba(225, 29, 72, 0.05)',
+        borderWidth: 4,
+        tension: 0.45,
+        pointBackgroundColor: '#e11d48',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        fill: true
+      }]
+    },
+    options: opzioniComuni('Distanza (N° Pagine)', 'Capacità (mF)', 10, 2)
+  });
+
+  // --- INIZIALIZZAZIONE GRAFICO 2: Capacità vs Superficie ---
+  const ctxSurf = document.getElementById('canvasSuperficie').getContext('2d');
+  const chartSuperficie = new Chart(ctxSurf, {
+    type: 'line',
+    data: {
+      datasets: [{
+        data: [
+          { x: 17, y: 2.27 },
+          { x: 18, y: 4.34 },
+          { x: 19, y: 5.23 },
+          { x: 20, y: 9.79 }
+        ],
+        borderColor: '#e11d48',
+        backgroundColor: 'rgba(225, 29, 72, 0.05)',
+        borderWidth: 4,
+        tension: 0.1,
+        pointBackgroundColor: '#e11d48',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0f172a',
+          padding: 14,
+          cornerRadius: 10,
+          callbacks: {
+            label: function(context) {
+              return `(${context.parsed.x}·1,5 cm; ${context.parsed.y} mF)`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          type: 'linear',
+          min: 16,
+          max: 23,
+          grid: { display: false },
+          ticks: {
+            stepSize: 1,
+            color: '#64748b',
+            font: { size: 12 },
+            callback: function(value) {
+              if (value >= 17 && value <= 22) return value;
+            }
+          },
+          title: { display: true, text: 'Dimensioni aumentate (cm)', color: '#334155', font: { weight: 'bold', size: 13 } }
+        },
+        y: {
+          min: 0,
+          max: 16,
+          grid: { color: '#e2e8f0', borderDash: [5, 5] },
+          ticks: {
+            stepSize: 2,
+            color: '#64748b',
+            font: { size: 12 }
+          },
+          title: { display: true, text: 'Capacità (mF)', color: '#334155', font: { weight: 'bold', size: 13 } }
+        }
+      }
+    }
+  });
+
+  // --- LOGICA REATTIVA DI AGGIORNAMENTO IN TEMPO REALE ---
+  function prendiValoreEConverti(id) {
+    const el = document.getElementById(id);
+    if (!el) return 0;
+    // Sostituisce la virgola con il punto per far digerire il decimale a JavaScript
+    let testoPulito = el.innerText.replace(',', '.').trim();
+    let numero = parseFloat(testoPulito);
+    return isNaN(numero) ? 0 : numero;
+  }
+
+  function gestisciAggiornamentoDati() {
+    // 1. Aggiorna i dati del primo grafico (Capacità vs Distanza basato su Cap 1)
+    chartDistanza.data.datasets[0].data = [
+      prendiValoreEConverti('cell-cap1-1'),
+      prendiValoreEConverti('cell-cap1-2'),
+      prendiValoreEConverti('cell-cap1-3'),
+      prendiValoreEConverti('cell-cap1-4')
+    ];
+    chartDistanza.update();
+
+    // 2. Aggiorna i dati del secondo grafico (Capacità vs Superficie prendendo i valori a 1 pagina)
+    chartSuperficie.data.datasets[0].data = [
+      { x: 17, y: prendiValoreEConverti('cell-cap4-1') },
+      { x: 18, y: prendiValoreEConverti('cell-cap3-1') },
+      { x: 19, y: prendiValoreEConverti('cell-cap2-1') },
+      { x: 20, y: prendiValoreEConverti('cell-cap1-1') }
+    ];
+    chartSuperficie.update();
+  }
+
+  // Associa la funzione a tutte le celle dotate della classe "editable-cell" su evento "input"
+  document.querySelectorAll('.editable-cell').forEach(cella => {
+    cella.addEventListener('input', gestisciAggiornamentoDati);
+  });
+</script>
+</body>
+</html>
